@@ -2,8 +2,10 @@ require("dotenv").config()
 
 module.exports = {
   siteMetadata: {
-    title: `Flying Embers Demo Storefront`,
+    title: `Flying Embers`,
+    description: `Flying Embers - online store organic alcohol drinks ✅ Organic kombucha drinks ✅ Alcoholic Kombucha ✅ buy to kombucha alcohol in Flying Embers ✅ Born in Ojai - Brewed in Ventura, CA ★ Best light alcohol drinks`,
     siteUrl: `https://www.flyingembers.io`,
+    author: `lenharta`,
   },
   plugins: [
     {
