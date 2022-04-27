@@ -1,25 +1,30 @@
+require("dotenv").config()
+
 module.exports = {
   siteMetadata: {
-    title: `fe-demo-store`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: `Flying Embers Demo Storefront`,
+    siteUrl: `https://www.flyingembers.io`,
   },
-  plugins: [{
-    resolve: 'gatsby-source-shopify',
-    options: {
-      "shopName": "",
-      "accessToken": ""
-    }
-  }, "gatsby-plugin-styled-components", {
-    resolve: 'gatsby-plugin-google-analytics',
-    options: {
-      "trackingId": ""
-    }
-  }, "gatsby-plugin-image", "gatsby-plugin-react-helmet", "gatsby-plugin-sitemap", "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
-    resolve: 'gatsby-source-filesystem',
-    options: {
-      "name": "images",
-      "path": "./src/images/"
+  plugins: [
+    {
+      resolve: "gatsby-source-shopify",
+      options: {
+        password: process.env.GATSBY_SHOPIFY_PASSWORD,
+        storeUrl: process.env.GATSBY_SHOPIFY_STORE_URL,
+      },
     },
-    __key: "images"
-  }]
-};
+    "gatsby-plugin-image",
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "images",
+        path: "./src/images/",
+      },
+      __key: "images",
+    },
+  ],
+}
