@@ -66,22 +66,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   header {
-    ${(props) => props.theme.headerComponent}
-    height: 100vh;
-    position: fixed;
-    padding: 5rem 1rem;
-    width: 10%;
-    left: 0;
-    top: 0;
+    ${props => props.theme.headerComponent}
   }
-
-  main {
-    width: 100%;
-  }
+  
   section {
     ${({ theme }) => theme.mixins.flexCenter}
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
   }
   li {
     list-style-type: none;

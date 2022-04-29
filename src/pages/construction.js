@@ -24,7 +24,6 @@ const ConstructionPage = () => {
           <h5>larrisett</h5>
           <h6>larrisett</h6>
           <span>larrisett</span><br />
-          <a>larrisett</a>
           <p>larrisett</p>
         </ExampleLarrisett>
         <hr />
@@ -36,7 +35,6 @@ const ConstructionPage = () => {
           <h5>MEEK MEDIUM</h5>
           <h6>MEEK MEDIUM</h6>
           <span>MEEK MEDIUM</span><br />
-          <a>MEEK MEDIUM</a>
           <p>MEEK MEDIUM</p>
         </ExampleMeekMD>
         <hr />
@@ -48,7 +46,6 @@ const ConstructionPage = () => {
           <h5>MEEK Black</h5>
           <h6>MEEK Black</h6>
           <span>MEEK Black</span><br />
-          <a>MEEK Black</a>
           <p>MEEK Black</p>
         </ExampleMeekBLK>
         <hr />
@@ -60,7 +57,6 @@ const ConstructionPage = () => {
           <h5>MEEK Super</h5>
           <h6>MEEK Super</h6>
           <span>MEEK Super</span><br />
-          <a>MEEK Super</a>
           <p>MEEK Super</p>
         </ExampleMeekSuper>
         <hr />
@@ -72,7 +68,6 @@ const ConstructionPage = () => {
           <h5>MEEK Bold</h5>
           <h6>MEEK Bold</h6>
           <span>MEEK Bold</span><br />
-          <a>MEEK Bold</a>
           <p>MEEK Bold</p>
         </ExampleMeekBold>
         {/* FOR EXAMPLE PURPOSES, WILL DELETE */}

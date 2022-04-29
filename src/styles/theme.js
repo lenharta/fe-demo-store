@@ -31,12 +31,13 @@ export const darkTheme = {
     background: var(--accent);
     color: black;
   `,
-
-  layoutComponent: css``,
-
+  
   PrimaryButtonComponent: css``,
 
   SecondaryButtonComponent: css``,
+
+  layoutComponent: css``,
+
 }
 
 

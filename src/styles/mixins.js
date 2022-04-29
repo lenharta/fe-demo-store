@@ -1,5 +1,5 @@
 import { css } from "styled-components"
-import { variables } from "./variables"
+import variables from "./variables"
 
 const mixins = {
   variables,

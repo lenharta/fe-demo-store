@@ -11,10 +11,17 @@ import {
 } from "react-icons/fa"
 import logo from "../images/FE-logo-2.webp"
 
+const StyledHeader = styled.header`
+  height: 100vh;
+  position: fixed;
+  padding: 5rem 1rem;
+  width: 10%;
+  left: 0;
+  top: 0;
+`
+
 const StyledLink = styled(Link)`
-  ${({theme}) => theme.mixins.flexCenter}
-
-
+  ${({ theme }) => theme.mixins.flexCenter}
 
   p {
     display: none;
@@ -91,7 +98,7 @@ const Header = ({ siteTitle }) => {
 
   return (
     <>
-      <header>
+      <StyledHeader>
         <Wrapper>
           <nav>
             {navItems.map((item, i) => (
@@ -99,7 +106,7 @@ const Header = ({ siteTitle }) => {
             ))}
           </nav>
         </Wrapper>
-      </header>
+      </StyledHeader>
     </>
   )
 }
