@@ -10,9 +10,7 @@ const NotFoundPage = () => {
     <>
       <Layout>
         <Seo title="Page Not Found | Flying Embers" />
-        <header>
-          <h1>Error 404 - Page Not Found</h1>
-        </header>
+        <header></header>
         <PrimaryButton text={"Go Home"} onClick={() => navigate("/")} />
       </Layout>
     </>

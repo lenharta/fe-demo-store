@@ -11,9 +11,8 @@ const IndexPage = () => {
       <Layout>
         <Seo title="Home | Flying Embers" />
         <section>
-          <p>Section Container</p>
-          <h3>Index Page</h3>
-          <PrimaryButton text="Go to Error" onClick={() => navigate("404")} />
+          <p>Index Page</p>
+          <PrimaryButton text="Go to Error Page" onClick={() => navigate("404")} />
         </section>
       </Layout>
     </>
@@ -26,7 +25,6 @@ export default IndexPage
 //////////
 //////////
 //////////
-// 
 // *** Place Styled Component Variables above the JSX Component
 // 
 // *** Font Styles and Sizes are done in GlobalStyles

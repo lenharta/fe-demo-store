@@ -58,92 +58,107 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
-  ////////// SEMANTIC ELEMENTS
-  ////////// 
-  ////////// 
+  
+  ////////// GLOBAL SEMANTIC ELEMENTS
   ////////// 
   body {
-    width: 100%;
-    height: 100%;
-    color: #000000;
-    background: #efefef;
+    ${props => props.theme.body}
   }
-  
-  main {}
-  header {}
-  footer {}
-  section {}
-  article {}
-  tbody {}
-  thead {}
-  tfoot {}
-  th {}
-  tr {}
-  ol {}
-  ul {}
-  li {}
-  button {}
-  input {}
-  form {}
-  select {}
 
+  header {
+    ${(props) => props.theme.headerComponent}
+    height: 100vh;
+    position: fixed;
+    padding: 5rem 1rem;
+    width: 10%;
+    left: 0;
+    top: 0;
+  }
+
+  main {
+    width: 100%;
+  }
+  section {
+    ${({ theme }) => theme.mixins.flexCenter}
+    width: 100%;
+    height: 100vh;
+  }
+  li {
+    list-style-type: none;
+  }
 
   ////////// TEXT ELEMENTS
   ////////// 
-  ////////// 
-  ////////// 
-  // Adjust Sizes & Colors from Figma
   h1 {
-    color: #000000;
-    font-size: 5rem;
+    font-size: var(--fz-10);
     letter-spacing: 3.5px;
   }
 
   h2 {
-    color: #000000;
-    font-size: 4rem;
+    font-size: var(--fz-8);
     letter-spacing: 3.5px;
   }
 
   h3 {
-    color: #000000;
-    font-size: 3rem;
+    font-size: var(--fz-6);
     letter-spacing: 3.5px;
   }
 
   h4 {
-    color: #000000;
-    font-size: 2.5rem;
+    font-size: var(--fz-5);
     letter-spacing: 3.5px;
   }
 
   h5 {
-    color: #000000;
-    font-size: 2rem;
+    font-size: var(--fz-4);
     letter-spacing: 3.5px;
   }
 
   h6 {
-    color: #000000;
-    font-size: 1.5rem;
+    font-size: var(--fz-3);
     letter-spacing: 3.5px;
   }
 
   span {
-    color: #000000;
-    font-size: 1.5rem;
-    letter-spacing: 1px;
+    font-size: var(--fz-2);
   }
 
   a {
-    color: #000000;
-    font-size: 1rem;
+    font-size: var(--fz-2);
+    text-decoration: none;
+    text-decoration-color: none;
   }
 
   p {
-    color: #000000;
-    font-size: 1rem;
+    font-size: var(--fz-2);
   }
+
+  ////////// BUTTONS & INPUTS
+  ////////// 
+  button {}
+  select {}
+  input {}
+  form {}
+
 `
 
 export default GlobalStyle
+
+/* body {} */
+/* main {} */
+/* header {} */
+/* footer {} */
+/* section {} */
+/* article {} */
+/* tbody {} */
+/* thead {} */
+/* tfoot {} */
+/* th {} */
+/* tr {} */
+/* ol {} */
+/* ul {} */
+/* li {} */
+/* select {} */
+/* button {} */
+/* input {} */
+/* form {} */
