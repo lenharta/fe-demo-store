@@ -3,11 +3,13 @@ import { css } from "styled-components"
 const variables = css`
   :root {
     ////////// FONTS
-    --p-font: MeekDPMedium !important;
+    --pop-font: 'Poppins', sans-serif !important;
+    --p-font-bld: MeekDPBold !important;
     --p-font-blk: MeekDPBlack !important;
     --p-font-sup: MeekDPSuper !important;
-    --p-font-bld: MeekDPBold !important;
+    --p-font: MeekDPMedium !important;
     --s-font: Larsseit !important;
+    
 
     ////////// COLORS
     --primary: rgba(0, 0, 0, 1);

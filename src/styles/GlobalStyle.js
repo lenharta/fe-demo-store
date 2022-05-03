@@ -7,11 +7,18 @@ const GlobalStyle = createGlobalStyle`
   ////////// FONTS
   ////////// 
   @font-face {
+    font-family: 'Poppins', sans-serif;
+    font-display: swap;
+    src: url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Poppins:ital,wght@0,300;0,900;1,300;1,900&display=swap');
+  }
+
+  @font-face {
     font-family: Larsseit;
     font-display: swap;
     src: url('https://cdn.shopify.com/s/files/1/0352/6367/6475/files/Larsseit.ttf?v=1585817649');
     font-weight: 400;
   }
+    ////////// HEADING FONTS
   @font-face {
     font-family: MeekDPMedium;
     font-display: swap;
@@ -52,14 +59,14 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
   }
-  ////////// GLOBAL SEMANTIC ELEMENTS
   ////////// 
+  ////////// GLOBAL SEMANTIC ELEMENTS
   body {
     ${props => props.theme.body}
   }
   header {
-    ${props => props.theme.headerComponent}
     ${props => props.theme.layoutBorderClass}
+    ${props => props.theme.headerComponent}
     border-right: none;
   }
   footer {
@@ -70,23 +77,50 @@ const GlobalStyle = createGlobalStyle`
     ${({ theme }) => theme.mixins.flexCenter}
     ${props => props.theme.layoutBorderClass}
     min-height: 100vh;
-    width: 100%;
+    margin: 0 auto;
     padding: 6rem;
+    width: 100%;
   }
   li {
     list-style-type: none;
   }
-  ////////// TEXT ELEMENTS
   ////////// 
+  ////////// TEXT ELEMENTS
   h1 {
+    font-family: var(--p-font-bld);
     font-size: var(--fz-12);
     letter-spacing: 3.5px;
-    font-family: var(--p-font-bld);
+
+    @media (max-width: 1600px) {
+    font-size: var(--fz-10);
+    }
+    @media (max-width: 1080px) {
+    font-size: var(--fz-8);
+    }
+    @media (max-width: 768px) {
+    font-size: var(--fz-6);
+    }
+    @media (max-width: 480px) {
+      font-size: var(--fz-5);
+    }
   }
   h2 {
     font-size: var(--fz-9);
-    letter-spacing: 3.5px;
-    font-family: var(--p-font-sup);
+    letter-spacing: 2px;
+    font-family: var(--pop-font);
+    font-weight: 900;
+
+    @media (max-width: 1600px) {
+    font-size: var(--fz-7);
+    }
+    @media (max-width: 1080px) {
+    font-size: var(--fz-6);
+    }
+    @media (max-width: 768px) {
+    font-size: var(--fz-5);
+    }
+    @media (max-width: 480px) {
+    }
   }
   h3 {
     font-size: var(--fz-6);
@@ -105,14 +139,17 @@ const GlobalStyle = createGlobalStyle`
     font-family: var(--s-font);
     text-decoration-color: none;
     text-decoration: none;
+    cursor: pointer;
   }
   p {
     font-size: var(--fz-2);
     font-family: var(--s-font);
   }
-  ////////// BUTTONS & INPUTS
   ////////// 
-  button {}
+  ////////// BUTTONS & INPUTS
+  button {
+    cursor: pointer;
+  }
   select {}
   input {}
   form {}

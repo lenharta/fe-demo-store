@@ -9,12 +9,33 @@ import Seo from "../components/Seo"
 import SecondaryButton from "../components/SecondaryButton"
 
 const Hero = styled.div`
-  ${({ theme }) => theme.mixins.flexCenter}
+  ${({ theme }) => theme.mixins.flexBetween}
   flex-direction: row;
-  width: 100%;
   height: 100%;
+  width: 100%;
   img {
-    width: 40rem;
+    width: 42rem;
+  }
+
+  @media (max-width: 1600px) {
+    img {
+      width: 30rem;
+    }
+  }
+  @media (max-width: 1080px) {
+    img {
+      width: 20rem;
+    }
+  }
+  @media (max-width: 768px) {
+    img {
+      width: 15rem;
+    }
+  }
+  @media (max-width: 480px) {
+    img {
+      width: 10rem;
+    }
   }
 `
 
@@ -26,22 +47,22 @@ const HeroCopy = styled.div`
 `
 
 const TitleOne = styled.h2`
+  ${props => props.theme.outlinedTextSecondary}
   ${props => props.theme.heroTitleOne}
-  font-family: var(--p-font);
-  margin-bottom: 0.5rem;
+  height: 100%;
   width: 100%;
 `
 const TitleTwo = styled.h2`
   ${props => props.theme.heroTitleTwo}
-  font-family: var(--p-font);
-  margin-bottom: 0.5rem;
+  height: 100%;
   width: 100%;
 `
 const TitleThree = styled.h1`
   ${props => props.theme.heroTitleThree}
   font-family: var(--p-font);
-  width: 100%;
   margin-bottom: 3rem;
+  height: 100%;
+  width: 100%;
 `
 const HeroLinks = styled.div`
   ${({ theme }) => theme.mixins.flexStart}

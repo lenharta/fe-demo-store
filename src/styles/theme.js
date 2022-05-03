@@ -87,13 +87,14 @@ export const darkTheme = {
     color: var(--accent);
   `,
   outlinedTextPrimary: css`
-    @supports (-webkit-text-stroke: 3px var(--primary)) {
+
+    @supports (-webkit-text-stroke: 3px transparent) {
       -webkit-text-stroke: 3px var(--primary);
       -webkit-text-fill-color: transparent;
     }
   `,
   outlinedTextSecondary: css`
-    @supports (-webkit-text-stroke: 3px var(--secondary)) {
+    @supports (-webkit-text-stroke: 3px transparent) {
       -webkit-text-stroke: 3px var(--secondary);
       -webkit-text-fill-color: transparent;
     }
