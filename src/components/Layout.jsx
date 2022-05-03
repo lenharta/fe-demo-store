@@ -1,11 +1,13 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import styled from "styled-components"
+
 import Header from "./Header"
+import ToTopButton from "./ToTopButton"
+
+import styled from "styled-components"
+import { darkTheme } from "../styles/theme"
 import GlobalStyle from "../styles/GlobalStyle"
 import { ThemeProvider } from "styled-components"
-import { darkTheme, lightTheme } from "../styles/theme"
-/* ${({ theme }) => theme.mixins.flexCenter} */
 
 const Site = styled.div`
   ${({ theme }) => theme.mixins.flexEnd}
@@ -55,6 +57,10 @@ const Layout = ({ children }) => {
               </div>
             </footer>
           </Content>
+          <ToTopButton
+            onClick={() => window.scrollTo(0, 0)}
+            disabled={window.location.scrollX === 0}
+          />
         </Site>
       </ThemeProvider>
     </>
@@ -64,3 +70,5 @@ const Layout = ({ children }) => {
 // POSSIBLE ERROR WITH { propTypes } MISSING, TRY FIRST
 
 export default Layout
+
+/* ${({ theme }) => theme.mixins.flexCenter} */

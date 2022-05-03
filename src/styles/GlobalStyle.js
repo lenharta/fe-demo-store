@@ -6,8 +6,6 @@ const GlobalStyle = createGlobalStyle`
 
   ////////// FONTS
   ////////// 
-  ////////// 
-  ////////// 
   @font-face {
     font-family: Larsseit;
     font-display: swap;
@@ -38,10 +36,7 @@ const GlobalStyle = createGlobalStyle`
     src: url('https://cdn.shopify.com/s/files/1/0352/6367/6475/t/51/assets/Meek_Display_v0.2-Bold.otf?v=968513694871126778');
     font-weight: 400;
   }
-
-  ////////// GLOBALS
-  ////////// 
-  ////////// 
+  ////////// GLOBAL RESET
   ////////// 
   *,
   *:before,
@@ -57,84 +52,84 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
   }
-
-  
   ////////// GLOBAL SEMANTIC ELEMENTS
   ////////// 
   body {
     ${props => props.theme.body}
   }
-
   header {
     ${props => props.theme.headerComponent}
+    ${props => props.theme.layoutBorderClass}
+    border-right: none;
   }
-  
+  footer {
+    ${props => props.theme.layoutBorderClass}
+    border-top: none;
+  }
   section {
     ${({ theme }) => theme.mixins.flexCenter}
-    width: 100%;
+    ${props => props.theme.layoutBorderClass}
     min-height: 100vh;
+    width: 100%;
+    padding: 6rem;
   }
   li {
     list-style-type: none;
   }
-
   ////////// TEXT ELEMENTS
   ////////// 
   h1 {
-    font-size: var(--fz-10);
+    font-size: var(--fz-12);
     letter-spacing: 3.5px;
+    font-family: var(--p-font-bld);
   }
-
   h2 {
-    font-size: var(--fz-8);
+    font-size: var(--fz-9);
     letter-spacing: 3.5px;
+    font-family: var(--p-font-sup);
   }
-
   h3 {
     font-size: var(--fz-6);
     letter-spacing: 3.5px;
   }
-
   h4 {
     font-size: var(--fz-5);
     letter-spacing: 3.5px;
   }
-
-  h5 {
-    font-size: var(--fz-4);
-    letter-spacing: 3.5px;
-  }
-
-  h6 {
-    font-size: var(--fz-3);
-    letter-spacing: 3.5px;
-  }
-
   span {
     font-size: var(--fz-2);
+    font-family: var(--s-font);
   }
-
   a {
     font-size: var(--fz-2);
-    text-decoration: none;
+    font-family: var(--s-font);
     text-decoration-color: none;
+    text-decoration: none;
   }
-
   p {
     font-size: var(--fz-2);
+    font-family: var(--s-font);
   }
-
   ////////// BUTTONS & INPUTS
   ////////// 
   button {}
   select {}
   input {}
   form {}
-
 `
-
 export default GlobalStyle
-
+//////////
+//////////
+//////////
+//////////
+//////////
+//////////
+//////////
+//////////
+//////////
+//////////
+//////////
+//////////
 /* body {} */
 /* main {} */
 /* header {} */

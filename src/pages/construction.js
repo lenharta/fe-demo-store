@@ -81,17 +81,22 @@ export default ConstructionPage
 // FOR EXAMPLE PURPOSES, WILL DELETE
 const ExampleLarrisett = styled.div`
   font-family: Larsseit !important;
+  color: white;
 `
 const ExampleMeekMD = styled.div`
   font-family: MeekDPMedium !important;
+  color: white;
 `
 const ExampleMeekBLK = styled.div`
   font-family: MeekDPBlack !important;
+  color: white;
 `
 const ExampleMeekSuper = styled.div`
   font-family: MeekDPSuper !important;
+  color: white;
 `
 const ExampleMeekBold = styled.div`
   font-family: MeekDPBold !important;
+  color: white;
 `
 // FOR EXAMPLE PURPOSES, WILL DELETE

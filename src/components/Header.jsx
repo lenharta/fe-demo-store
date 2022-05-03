@@ -9,49 +9,69 @@ import {
   FaUserAlt,
   FaShoppingCart,
 } from "react-icons/fa"
-import logo from "../images/FE-logo-2.webp"
+import logo from "../images/FE-logo-3.webp"
 
 const StyledHeader = styled.header`
-  height: 100vh;
+  padding: 6rem 1rem;
   position: fixed;
-  padding: 5rem 1rem;
+  height: 100vh;
   width: 10%;
   left: 0;
   top: 0;
 `
 
 const StyledLink = styled(Link)`
-  ${({ theme }) => theme.mixins.flexCenter}
-
-  p {
-    display: none;
+  ${({theme}) => theme.mixins.flexCenter}
+  padding: 1rem;
+  svg {
+    height: 45px;
+    width: 45px;
+  }
+  @media (max-width: 1600px) {
+    svg {
+      height: 35px;
+      width: 35px;
+    }
+  }
+  @media (max-width: 1080px) {
+    svg {
+      height: 30px;
+      width: 30px;
+    }
+  }
+  @media (max-width: 768px) {
+    /* REMOVE AND REPLACE WITH MOBILE MENU BUTTON */
   }
 `
 
 /* HEADER TAG LOCATED IN GLOBALSTYLE.JS */
 const Wrapper = styled.div`
-  ${({ theme }) => theme.mixins.flexBetween}
+  ${({ theme }) => theme.mixins.flexCenter}
   flex-direction: column;
   height: 100%;
   width: 100%;
   nav {
-    ${({ theme }) => theme.mixins.flexCenter}
+    ${({ theme }) => theme.mixins.flexBetween}
     flex-direction: column;
     height: 100%;
+    width: 100%;
     div {
-      margin: 20px 0px;
       img {
         height: 100px;
         width: 100px;
-        @media (max-width: 1600px) {
-          height: 75px;
-          width: 75px;
-        }
-        @media (max-width: 1080px) {
-          height: 60px;
-          width: 60px;
-        }
       }
+    }
+  }
+  @media (max-width: 1600px) {
+    img {
+      height: 75px;
+      width: 75px;
+    }
+  }
+  @media (max-width: 1080px) {
+    img {
+      height: 60px;
+      width: 60px;
     }
   }
 `
@@ -64,33 +84,28 @@ const Header = ({ siteTitle }) => {
   )
 
   const two = (
-    <StyledLink to="/">
+    <StyledLink to="/shop" aria-label="Shop">
       <FaStore />
-      <p>Shop</p>
     </StyledLink>
   )
   const three = (
-    <StyledLink to="/">
+    <StyledLink to="/locations" aria-label="Locations">
       <FaMapPin />
-      <p>Locations</p>
     </StyledLink>
   )
   const four = (
-    <StyledLink to="/">
+    <StyledLink to="/about" aria-label="About Us">
       <FaHeart />
-      <p>Our Story</p>
     </StyledLink>
   )
   const five = (
-    <StyledLink to="/">
+    <StyledLink to="/user" aria-label="Account">
       <FaUserAlt />
-      <p>Account</p>
     </StyledLink>
   )
   const six = (
-    <StyledLink to="/">
+    <StyledLink to="/cart" aria-label="Shopping Cart">
       <FaShoppingCart />
-      <p>Cart</p>
     </StyledLink>
   )
 
