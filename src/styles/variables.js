@@ -3,13 +3,12 @@ import { css } from "styled-components"
 const variables = css`
   :root {
     ////////// FONTS
-    --pop-font: 'Poppins', sans-serif !important;
+    --p-font: MeekDPMedium !important;
     --p-font-bld: MeekDPBold !important;
     --p-font-blk: MeekDPBlack !important;
     --p-font-sup: MeekDPSuper !important;
-    --p-font: MeekDPMedium !important;
-    --s-font: Larsseit !important;
-    
+    --s-font: 'Poppins', sans-serif !important;
+    --th-font: Larsseit !important;
 
     ////////// COLORS
     --primary: rgba(0, 0, 0, 1);
@@ -19,18 +18,21 @@ const variables = css`
     --outline-border: rgba(255, 255, 255, 0.25);
 
     ////////// FONT SIZE
-    --fz-1: 0.75rem;
-    --fz-2: 1rem;
-    --fz-3: 1.5rem;
-    --fz-4: 2rem;
-    --fz-5: 2.5rem;
-    --fz-6: 3rem;
-    --fz-7: 3.5rem;
-    --fz-8: 4rem;
-    --fz-9: 4.5rem;
-    --fz-10: 5rem;
-    --fz-11: 5.5rem;
-    --fz-12: 6rem;
+    --fz-1: 0.75em;
+    --fz-2: 1em;
+    --fz-3: 1.5em;
+    --fz-4: 2em;
+    --fz-5: 2.5em;
+    --fz-6: 3em;
+    --fz-7: 3.5em;
+    --fz-8: 4em;
+    --fz-9: 4.5em;
+    --fz-10: 5em;
+    --fz-11: 5.5em;
+    --fz-12: 6em;
+    --fz-13: 6.5em;
+    --fz-14: 7em;
+    --fz-15: 7.5em;
 
     ////////// BORDER RADIUS
     // {MAY CHANGE}

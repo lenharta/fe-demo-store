@@ -6,10 +6,10 @@ import { FaAngleRight } from "react-icons/fa"
 const ButtonWrapper = styled.button`
   ${props => props.theme.secondaryButtonComponent}
   ${({ theme }) => theme.mixins.flexBetween}
-  height: 60px;
-  width: 300px;
+  padding: 0.5rem 1rem;
   border-radius: 50px;
-  padding: 1rem;
+  max-width: 400px;
+  width: 100%;
 `
 const Title = styled.span`
   font-size: var(--fz-2);

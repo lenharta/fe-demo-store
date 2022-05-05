@@ -1,42 +1,41 @@
 import { css } from "styled-components"
 import mixins from "./mixins"
 
-export const darkTheme = {
+export const Theme = {
   mixins,
 
-  //////////
-  ////////// GLOBAL
+  ////////// GLOBAL {  }
   body: css`
     background: var(--primary);
   `,
 
-  //////////
-  ////////// PAGES
-  indexPage: css``,
-  notFoundPage: css``,
-  aboutPage: css``,
-  cartPage: css``,
-  locationsPage: css``,
-  shopPage: css``,
-  userPage: css``,
+  ////////// HEADINGS
+  bigHeading: css`
+    margin: 0;
+    font-size: clamp(1rem, 8vw, 2rem);
+  `,
+  // mediumHeading: css`
+  //   margin: 0;
+  //   font-size: clamp(40px, 8vw, 60px);
+  // `,
+  // smallHeading: css`
+  //   margin: 0;
+  //   font-size: clamp(40px, 8vw, 60px);
+  // `,
 
-  //////////
-  ////////// LAYOUT COMPONENTS
-  layoutComponent: css``,
-  headerComponent: css`
-    background: var(--primary);
-    p {
-      color: var(--accent);
+  numberedHeading: css``,
+
+  ////////// LINKS
+  styledLink: css`
+    :hover {
+      opacity: 0.8;
     }
-    svg {
-      color: var(--accent);
-      :hover {
-        opacity: var(--hover-opacity);
-      }
-    }
+    text-decoration-color: none;
+    text-decoration-style: none;
+    text-decoration: none;
+    cursor: pointer;
   `,
 
-  //////////
   ////////// BUTTON COMPONENTS
   toTopComponent: css`
     background: var(--accent);
@@ -69,25 +68,8 @@ export const darkTheme = {
     }
   `,
 
-  //////////
-  ////////// UTILIT
-  // ( NOTE ) => FIX UNEVEN BORDERS IN REFACTORING
-  // border classes
-  layoutBorderClass: css`
-    border: var(--layout-border);
-  `,
-  // Text classes
-  heroTitleOne: css`
-    color: var(--secondary);
-  `,
-  heroTitleTwo: css`
-    color: var(--secondary);
-  `,
-  heroTitleThree: css`
-    color: var(--accent);
-  `,
+  ////////// UTILITIES
   outlinedTextPrimary: css`
-
     @supports (-webkit-text-stroke: 3px transparent) {
       -webkit-text-stroke: 3px var(--primary);
       -webkit-text-fill-color: transparent;
@@ -97,35 +79,6 @@ export const darkTheme = {
     @supports (-webkit-text-stroke: 3px transparent) {
       -webkit-text-stroke: 3px var(--secondary);
       -webkit-text-fill-color: transparent;
-    }
-  `,
-
-  outlinedHeading: css`
-    @supports (-webkit-text-stroke: 3px transparent) {
-      h1 {
-        -webkit-text-stroke: 3px orange;
-        -webkit-text-fill-color: transparent;
-      }
-      h2 {
-        -webkit-text-stroke: 3px orange;
-        -webkit-text-fill-color: transparent;
-      }
-      h3 {
-        -webkit-text-stroke: 3px orange;
-        -webkit-text-fill-color: transparent;
-      }
-      h4 {
-        -webkit-text-stroke: 3px orange;
-        -webkit-text-fill-color: transparent;
-      }
-      h5 {
-        -webkit-text-stroke: 3px orange;
-        -webkit-text-fill-color: transparent;
-      }
-      h6 {
-        -webkit-text-stroke: 3px orange;
-        -webkit-text-fill-color: transparent;
-      }
     }
   `,
 }
