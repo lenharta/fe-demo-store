@@ -12,10 +12,9 @@ const variables = css`
 
     ////////// COLORS
     --primary: rgba(0, 0, 0, 1);
-    --accent-p: rgba(32, 29, 30, 1);
+    --accent-section: rgba(51, 3, 0, 1);
     --secondary: rgba(255, 255, 255, 1);
     --accent: rgba(185, 140, 71, 1);
-    --outline-border: rgba(255, 255, 255, 0.25);
 
     ////////// FONT SIZE
     --fz-1: 0.75em;

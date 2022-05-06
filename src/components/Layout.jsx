@@ -45,7 +45,6 @@ const Layout = ({ children }) => {
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
-
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <Content>
         <main>{children}</main>
@@ -85,6 +84,3 @@ const Layout = ({ children }) => {
 export default Layout
 
 /* ${({ theme }) => theme.mixins.flexCenter} */
-
-
-

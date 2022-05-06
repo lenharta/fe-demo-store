@@ -9,6 +9,12 @@ export const Theme = {
     background: var(--primary);
   `,
 
+  resetList: css`
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  `,
+
   ////////// HEADINGS
   bigHeading: css`
     margin: 0;

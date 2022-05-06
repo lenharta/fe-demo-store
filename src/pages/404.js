@@ -10,7 +10,6 @@ const NotFoundPage = () => {
     <>
       <Layout>
         <Seo title="Page Not Found | Flying Embers" />
-        <header></header>
         <PrimaryButton text={"Go Home"} onClick={() => navigate("/")} />
       </Layout>
     </>

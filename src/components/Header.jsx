@@ -1,6 +1,10 @@
 import * as React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
+import { navLinks } from "../utils/config"
+import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion"
+import MobileMenu from "./MobileMenu"
+import { useWidthSize } from "../hooks/useWidthSize"
 
 const StyledHeader = styled.header`
   ${({ theme }) => theme.mixins.flexCenter}
@@ -11,7 +15,10 @@ const StyledHeader = styled.header`
 `
 
 const NavList = styled.ul`
-  /* ${({theme}) => theme.mixins.flexCenter} */
+  ${({ theme }) => theme.mixins.flexCenter}
+  ${({ theme }) => theme.mixins.resetList}
+  flex-direction: column;
+  justify-content: flex-start;
   width: 100%;
 `
 
@@ -19,51 +26,59 @@ const StyledLink = styled(Link)`
   ${props => props.theme.styledLink}
   font-family: var(--th-font);
   color: var(--accent);
+  width: 100%;
   span {
     font-family: var(--p-font);
   }
 `
 
 const Header = ({ siteTitle }) => {
-  const one = (
-    <StyledLink to="/shop" aria-label="Shop">
-      {`Shop`}
-    </StyledLink>
-  )
-  const two = (
-    <StyledLink to="/locations" aria-label="Locations">
-      {`Locations`}
-    </StyledLink>
-  )
-  const three = (
-    <StyledLink to="/about" aria-label="About Us">
-      {`About Us`}
-    </StyledLink>
-  )
-  const four = (
-    <StyledLink to="/user" aria-label="Account">
-      {`Account`}
-    </StyledLink>
-  )
-  const five = (
-    <StyledLink to="/cart" aria-label="Shopping Cart">
-      {`Cart`}
-    </StyledLink>
-  )
-
-  const navItems = [one, two, three, four, five]
+  const prefersReducedMotion = usePrefersReducedMotion()
 
   return (
     <StyledHeader>
       <nav>
-        <NavList>
-          <StyledLink to="/">
-            <span>{siteTitle}</span>
-          </StyledLink>
-          {navItems.map((item, i) => (
-            <li key={i}>{item}</li>
-          ))}
-        </NavList>
+        {prefersReducedMotion ? (
+          <>
+            <StyledLink to="/">
+              <span>{siteTitle}</span>
+            </StyledLink>
+
+            <NavList>
+              {navLinks.map(({ title, url, ariaLabel }, i) => (
+                <li key={i}>
+                  <StyledLink to={url} aria-label={ariaLabel}>
+                    {title}
+                  </StyledLink>
+                </li>
+              ))}
+            </NavList>
+
+            <MobileMenu
+              sitetitle={siteTitle}
+            />
+          </>
+        ) : (
+          <>
+            <StyledLink to="/">
+              <span>{siteTitle}</span>
+            </StyledLink>
+
+            <NavList>
+              {navLinks.map(({ title, url, ariaLabel }, i) => (
+                <li key={i}>
+                  <StyledLink to={url} aria-label={ariaLabel}>
+                    {title}
+                  </StyledLink>
+                </li>
+              ))}
+            </NavList>
+
+            <MobileMenu
+              sitetitle={siteTitle}
+            />
+          </>
+        )}
       </nav>
     </StyledHeader>
   )
