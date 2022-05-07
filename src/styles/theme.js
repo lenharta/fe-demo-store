@@ -15,6 +15,12 @@ export const Theme = {
     list-style: none;
   `,
 
+  resetButton: css`
+    margin: 0;
+    padding: 0;
+    border: none;
+  `,
+
   ////////// HEADINGS
   bigHeading: css`
     margin: 0;

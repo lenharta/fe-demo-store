@@ -7,7 +7,6 @@ import MobileMenu from "./MobileMenu"
 import { useWidthSize } from "../hooks/useWidthSize"
 
 const StyledHeader = styled.header`
-  ${({ theme }) => theme.mixins.flexCenter}
   position: fixed;
   width: 100%;
   left: 0;
@@ -15,68 +14,82 @@ const StyledHeader = styled.header`
 `
 
 const NavList = styled.ul`
-  ${({ theme }) => theme.mixins.flexCenter}
-  ${({ theme }) => theme.mixins.resetList}
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100%;
-`
+  display: none;
+  
+  @media (min-width: 1080px) {
+    ${({ theme }) => theme.mixins.flexCenter}
+    li {
+      ${({ theme }) => theme.mixins.resetList}
+      
+    }
+    justify-content: flex-start;
+    width: 100%;
+  }
+  `
 
 const StyledLink = styled(Link)`
-  ${props => props.theme.styledLink}
-  font-family: var(--th-font);
-  color: var(--accent);
-  width: 100%;
-  span {
-    font-family: var(--p-font);
+  display: none;
+  
+  @media (min-width: 1080px) {
+    ${({ theme }) => theme.mixins.flexCenter}
+    ${props => props.theme.styledLink}
+    font-family: var(--th-font);
+    color: var(--accent);
+    width: 100%;
+    span {
+      font-family: var(--p-font);
+    }
   }
 `
 
 const Header = ({ siteTitle }) => {
   const prefersReducedMotion = usePrefersReducedMotion()
 
+  const navItems = (
+    <>
+      {navLinks.map(({ title, url, ariaLabel }, i) => (
+        <li key={i}>
+          <StyledLink to={url} aria-label={ariaLabel}>
+            {title}
+          </StyledLink>
+        </li>
+      ))}
+    </>
+  )
+
+  // Add Nav Build for Framer Motion
+  const animatedNavItems = (
+    <>
+
+    </>
+  )
+
+  const navLogo = (
+    <>
+      <StyledLink to="/">
+        <span>{siteTitle}</span>
+      </StyledLink>
+    </>
+  )
+
   return (
     <StyledHeader>
       <nav>
         {prefersReducedMotion ? (
           <>
-            <StyledLink to="/">
-              <span>{siteTitle}</span>
-            </StyledLink>
+            {navLogo}
 
-            <NavList>
-              {navLinks.map(({ title, url, ariaLabel }, i) => (
-                <li key={i}>
-                  <StyledLink to={url} aria-label={ariaLabel}>
-                    {title}
-                  </StyledLink>
-                </li>
-              ))}
-            </NavList>
+            <NavList>{navItems}</NavList>
 
-            <MobileMenu
-              sitetitle={siteTitle}
-            />
+            <MobileMenu logo={siteTitle} />
           </>
         ) : (
           <>
-            <StyledLink to="/">
-              <span>{siteTitle}</span>
-            </StyledLink>
+            {navLogo}
+            
+            <NavList>{navItems}</NavList>
 
-            <NavList>
-              {navLinks.map(({ title, url, ariaLabel }, i) => (
-                <li key={i}>
-                  <StyledLink to={url} aria-label={ariaLabel}>
-                    {title}
-                  </StyledLink>
-                </li>
-              ))}
-            </NavList>
-
-            <MobileMenu
-              sitetitle={siteTitle}
-            />
+            <MobileMenu logo={siteTitle} />
           </>
         )}
       </nav>

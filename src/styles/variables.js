@@ -12,7 +12,7 @@ const variables = css`
 
     ////////// COLORS
     --primary: rgba(0, 0, 0, 1);
-    --accent-section: rgba(51, 3, 0, 1);
+    --accent-section: rgba(51, 51, 51, 1);
     --secondary: rgba(255, 255, 255, 1);
     --accent: rgba(185, 140, 71, 1);
 

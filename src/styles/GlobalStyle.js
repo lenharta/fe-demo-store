@@ -70,6 +70,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0 1rem; 
   }
   section {
+    width: 100%
   }
   h1,
   h2,
