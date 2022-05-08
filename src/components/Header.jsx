@@ -4,7 +4,6 @@ import { Link } from "gatsby"
 import { navLinks } from "../utils/config"
 import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion"
 import MobileMenu from "./MobileMenu"
-import { useWidthSize } from "../hooks/useWidthSize"
 
 const StyledHeader = styled.header`
   position: fixed;

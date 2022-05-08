@@ -15,6 +15,7 @@ const variables = css`
     --accent-section: rgba(51, 51, 51, 1);
     --secondary: rgba(255, 255, 255, 1);
     --accent: rgba(185, 140, 71, 1);
+    --grayscale: rgba(200, 200, 200, 0.1);
 
     ////////// FONT SIZE
     --fz-1: 0.75em;
@@ -34,14 +35,7 @@ const variables = css`
     --fz-15: 7.5em;
 
     ////////// BORDER RADIUS
-    // {MAY CHANGE}
     --br-round: 50%;
-
-    ////////// FILTERS
-    // {MAY CHANGE}
-    --blur-1: blur(10px);
-    --blur-2: blur(20px);
-    --blur-3: blur(30px);
 
     ////////// BUTTON VARIABLES
     --hover-opacity: 0.8;
@@ -54,7 +48,10 @@ const variables = css`
     --layout-border: solid 2.5px var(--outline-border);
     --border-button: solid 3px var(--accent);
     
-
+    ////////// NAVIGATION
+    --mobile-nav-height: 5rem;
+    --desktop-nav-height: 6.25rem;
+    
   }
 `
 
