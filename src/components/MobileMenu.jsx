@@ -6,9 +6,9 @@ import Icons from "../images/icons"
 import { Link } from "gatsby"
 
 import { navLinks, socialMedia } from "../utils/config"
+import { textTransitionSide } from "../utils/framerMotion"
 import useOnClickOutside from "../hooks/useOnClickOutside"
 import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion"
-
 
 const Container = styled.div`
   ${({ theme }) => theme.mixins.flexBetween}
@@ -24,8 +24,8 @@ const Container = styled.div`
 
 const LogoLink = styled(Link)`
   ${props => props.theme.styledLink}
-  font-family: var(--p-font);
   font-size: clamp(var(--fz-3), 4vw, var(--fz-4));
+  font-family: var(--p-font);
   color: var(--accent);
   letter-spacing: 2px;
   padding: 0.5rem;
@@ -51,7 +51,7 @@ const Hamburger = styled.button`
   }
 `
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(motion(Link))`
   ${props => props.theme.styledLink}
   font-family: var(--th-font);
   font-size: var(--fz-3);
@@ -122,17 +122,16 @@ const Social = styled.div`
     flex-wrap: wrap;
     height: 5rem;
     width: 100%;
-  }
-`
-
-const SocialLink = styled(Link)`
-  ${({ theme }) => theme.mixins.flexCenter}
-  ${props => props.theme.styledLink}
-  color: var(--accent);
-  padding: 0.5rem;
-  svg {
-    height: 2rem;
-    width: 2rem;
+    a {
+      ${({ theme }) => theme.mixins.flexCenter}
+      ${props => props.theme.styledLink}
+      color: var(--accent);
+      padding: 0.5rem;
+      svg {
+        height: 2rem;
+        width: 2rem;
+      }
+    }
   }
 `
 
@@ -147,11 +146,16 @@ const MobileMenu = ({ logo }) => {
   const navItems = (
     <>
       {navLinks.map(({ title, url, ariaLabel }, i) => (
-        <li key={i}>
+        <motion.li
+          key={i}
+          variants={textTransitionSide}
+          initial="hidden"
+          animate="show"
+        >
           <StyledLink to={url} aria-label={ariaLabel}>
             {title}
           </StyledLink>
-        </li>
+        </motion.li>
       ))}
     </>
   )
@@ -180,9 +184,9 @@ const MobileMenu = ({ logo }) => {
                   <p>Follow Us On</p>
                   <div>
                     {socialMedia.map(({ title, url }, i) => (
-                      <SocialLink key={i} to={url} aria-label={title}>
+                      <a key={i} to={url} aria-label={title}>
                         <Icons title={title} />
-                      </SocialLink>
+                      </a>
                     ))}
                   </div>
                 </Social>
@@ -208,9 +212,9 @@ const MobileMenu = ({ logo }) => {
                   <p>Follow Us On</p>
                   <div>
                     {socialMedia.map(({ title, url }, i) => (
-                      <SocialLink key={i} to={url} aria-label={title}>
+                      <a key={i} to={url} aria-label={title}>
                         <Icons title={title} />
-                      </SocialLink>
+                      </a>
                     ))}
                   </div>
                 </Social>

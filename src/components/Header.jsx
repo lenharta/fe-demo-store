@@ -6,7 +6,9 @@ import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion"
 import MobileMenu from "./MobileMenu"
 
 const StyledHeader = styled.header`
+  border: solid 1px var(--accent-section);
   position: fixed;
+  height: auto;
   width: 100%;
   left: 0;
   top: 0;

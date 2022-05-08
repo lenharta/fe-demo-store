@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql, Link, location } from "gatsby"
 
 import Header from "./Header"
 import ToTopButton from "./ToTopButton"
@@ -30,7 +30,7 @@ const Content = styled.div`
   }
 `
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   const data = useStaticQuery(graphql`
     query siteTitleQuery {
       site {
@@ -47,7 +47,7 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <Content>
-        <main>{children}</main>
+        <main location={location}>{children}</main>
         <footer>
           <address></address>
         </footer>
