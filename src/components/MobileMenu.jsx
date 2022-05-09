@@ -143,12 +143,34 @@ const MobileMenu = ({ logo }) => {
   useOnClickOutside(wrapperRef, () => setOpenMenu(false))
   const prefersReducedMotion = usePrefersReducedMotion()
 
-  const navItems = (
+  // Animation for links => may add delay to links with menu slide 
+  const linkTransitionSlide = {
+    hidden: {
+      type: "spring",
+      opacity: 0,
+      x: 150,
+      transition: {
+        duration: 0.4,
+      }
+    },
+    show: i => ({
+      type: "spring",
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.4,
+        delay: i * 0.1
+      }
+    })
+  };
+
+  const navItemsAnimated = (
     <>
       {navLinks.map(({ title, url, ariaLabel }, i) => (
         <motion.li
           key={i}
-          variants={textTransitionSide}
+          custom={i}
+          variants={linkTransitionSlide}
           initial="hidden"
           animate="show"
         >
@@ -156,6 +178,19 @@ const MobileMenu = ({ logo }) => {
             {title}
           </StyledLink>
         </motion.li>
+      ))}
+    </>
+  )
+  const navItems = (
+    <>
+      {navLinks.map(({ title, url, ariaLabel }, i) => (
+        <li
+          key={i}
+        >
+          <StyledLink to={url} aria-label={ariaLabel}>
+            {title}
+          </StyledLink>
+        </li>
       ))}
     </>
   )
@@ -207,14 +242,22 @@ const MobileMenu = ({ logo }) => {
           {openMenu === true ? (
             <>
               <MobileMenuWrapper ref={wrapperRef}>
-                <ul>{navItems}</ul>
+                <ul>{navItemsAnimated}</ul>
                 <Social>
                   <p>Follow Us On</p>
                   <div>
                     {socialMedia.map(({ title, url }, i) => (
-                      <a key={i} to={url} aria-label={title}>
+                      <motion.a 
+                        aria-label={title}
+                        custom={i}
+                        variants={linkTransitionSlide}
+                        initial="hidden"
+                        animate="show"
+                        to={url} 
+                        key={i} 
+                      >
                         <Icons title={title} />
-                      </a>
+                      </motion.a>
                     ))}
                   </div>
                 </Social>

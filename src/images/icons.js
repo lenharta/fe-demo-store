@@ -29,7 +29,7 @@ const Icons = ({ title }) => {
 }
 
 Icons.propTypes = {
-  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 export default Icons

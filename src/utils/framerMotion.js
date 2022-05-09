@@ -84,23 +84,3 @@ export const textTransitionDown = {
     }
   }
 };
-export const textTransitionSide = {
-  hidden: {
-    type: "spring",
-    opacity: 0,
-    y: -150,
-    transition: {
-      duration: 0.4,
-      when: "beforeChildren",
-      delayChildren: 0.3
-    }
-  },
-  show: {
-    type: "spring",
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-    }
-  }
-};
