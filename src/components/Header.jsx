@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import { navLinks } from "../utils/config"
 import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion"
-import MobileMenu from "./MobileMenu"
+import MobileNav from "./MobileNav"
 
 const StyledHeader = styled.header`
   border: solid 1px var(--accent-section);
@@ -16,21 +16,20 @@ const StyledHeader = styled.header`
 
 const NavList = styled.ul`
   display: none;
-  
+
   @media (min-width: 1080px) {
     ${({ theme }) => theme.mixins.flexCenter}
     li {
       ${({ theme }) => theme.mixins.resetList}
-      
     }
     justify-content: flex-start;
     width: 100%;
   }
-  `
+`
 
 const StyledLink = styled(Link)`
   display: none;
-  
+
   @media (min-width: 1080px) {
     ${({ theme }) => theme.mixins.flexCenter}
     ${props => props.theme.styledLink}
@@ -61,7 +60,7 @@ const Header = ({ siteTitle }) => {
   // Add Nav Build for Framer Motion
   const animatedNavItems = (
     <>
-
+      {/* ! BUILD ONCE REDUCED MOTION IS COMPLETE ! */}
     </>
   )
 
@@ -78,19 +77,16 @@ const Header = ({ siteTitle }) => {
       <nav>
         {prefersReducedMotion ? (
           <>
-            {navLogo}
 
-            <NavList>{navItems}</NavList>
-
-            <MobileMenu logo={siteTitle} />
           </>
         ) : (
           <>
+            {/* ! WILL REPLACE AND MOVE ABOVE ! */}
             {navLogo}
-            
+
             <NavList>{navItems}</NavList>
 
-            <MobileMenu logo={siteTitle} />
+            <MobileNav logo={siteTitle} />
           </>
         )}
       </nav>

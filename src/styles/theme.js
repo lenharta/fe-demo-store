@@ -9,6 +9,20 @@ export const Theme = {
     background: var(--primary);
   `,
 
+  pageWrapper: css`
+    ${({ theme }) => theme.mixins.flexCenter}
+    margin-top: var(--mobile-nav-height);
+    width: min(100%, 1600px);
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 1rem;
+
+    @media (min-width: 1080px) {
+      // WILL BE PADDING FOR DESKTOP NAV
+      padding: 2rem;
+    }
+  `,
+
   resetList: css`
     margin: 0;
     padding: 0;

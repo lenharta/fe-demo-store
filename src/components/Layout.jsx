@@ -1,5 +1,6 @@
 import * as React from "react"
 import { useStaticQuery, graphql, Link, location } from "gatsby"
+import PropTypes from "prop-types"
 
 import Header from "./Header"
 import ToTopButton from "./ToTopButton"
@@ -55,6 +56,11 @@ const Layout = ({ children, location }) => {
     </ThemeProvider>
   )
 }
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 
 {
   /* <div>

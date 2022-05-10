@@ -64,20 +64,10 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     min-height: 100%;
   }
-  article {
-    ${({ theme }) => theme.mixins.flexCenter}
-    width: 100%;
-    padding: 0 1rem; 
-  }
-  section {
-    width: 100%
-  }
   h1,
   h2,
   h3,
   h4 {
-    margin: 0 0 10px 0;
-    line-height: 1.1;
   }
   a {
   }

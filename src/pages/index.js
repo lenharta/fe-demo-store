@@ -8,10 +8,8 @@ import Layout from "../components/Layout"
 import PrimaryButton from "../components/PrimaryButton"
 import SecondaryButton from "../components/SecondaryButton"
 
-import HeroImg from "../images/P-FE-bitters-and-botanicals-pack.webp"
-
 const PageWrapper = styled.section`
-  ${({theme}) => theme.mixins.flexCenter}
+  ${props => props.theme.pageWrapper}
 `
 
 const IndexPage = () => {
@@ -21,9 +19,6 @@ const IndexPage = () => {
       <PageWrapper>
         
         {/* <h1>Index Page</h1> */}
-        {/* <ImageContainer>
-          <img src={HeroImg} alt="Bitters and Botanicals Variety Pack" />
-        </ImageContainer> */}
         {/* <PrimaryButton
           text={`Buy Online`}
           onClick={() => navigate("shop")}

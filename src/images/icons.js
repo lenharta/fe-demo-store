@@ -9,8 +9,8 @@ import {
   FaExternalLinkAlt,
 } from "react-icons/fa"
 
-const Icons = ({ title }) => {
-  switch (title) {
+const Icons = ({ name }) => {
+  switch (name) {
     case "Close":
       return <MdClose />
     case "Facebook":
@@ -29,7 +29,7 @@ const Icons = ({ title }) => {
 }
 
 Icons.propTypes = {
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 }
 
 export default Icons

@@ -1,12 +1,11 @@
 import * as React from "react"
 import { useState, useRef } from "react"
 import styled from "styled-components"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import Icons from "../images/icons"
 import { Link } from "gatsby"
 
 import { navLinks, socialMedia } from "../utils/config"
-import { textTransitionSide } from "../utils/framerMotion"
 import useOnClickOutside from "../hooks/useOnClickOutside"
 import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion"
 
@@ -51,7 +50,7 @@ const Hamburger = styled.button`
   }
 `
 
-const StyledLink = styled(motion(Link))`
+const StyledLink = styled(Link)`
   ${props => props.theme.styledLink}
   font-family: var(--th-font);
   font-size: var(--fz-3);
@@ -60,6 +59,7 @@ const StyledLink = styled(motion(Link))`
   position: relative;
 
   &:hover {
+    color: var(--secondary);
     &::after {
       content: " ";
       background: var(--secondary);
@@ -74,23 +74,17 @@ const StyledLink = styled(motion(Link))`
 
 const MobileMenuWrapper = styled.aside`
   ${({ theme }) => theme.mixins.blurBackground}
-  ${({ theme }) => theme.mixins.flexCenter}
+  ${({ theme }) => theme.mixins.flexBetween}
   border: solid 1px var(--accent-section);
-  justify-content: flex-start;
   background: var(--primary);
   width: min(75vw, 400px);
   flex-direction: column;
   position: absolute;
+  padding: 3rem 2rem;
   min-height: 100vh;
-  padding: 2rem;
   bottom: 0;
   right: 0;
   top: 0;
-
-  /* @supports (backdrop-filter: blur(1rem)) {
-    background: var(--grayscale);
-    backdrop-filter: blur(1rem);
-  } */
 
   ul {
     ${props => props.theme.resetList}
@@ -103,39 +97,84 @@ const MobileMenuWrapper = styled.aside`
   }
 `
 
-const Social = styled.div`
-  display: block;
+const MobileMenuWrapperAnimated = styled(motion.div)`
+  ${({ theme }) => theme.mixins.blurBackground}
+  ${({ theme }) => theme.mixins.flexBetween}
+  border: solid 1px var(--accent-section);
+  background: var(--primary);
+  width: min(75vw, 400px);
+  flex-direction: column;
+  position: absolute;
+  padding: 3rem 2rem;
+  min-height: 100vh;
+  bottom: 0;
+  right: 0;
+  top: 0;
+
+  ul {
+    ${props => props.theme.resetList}
+    margin: 3rem 0;
+    width: 100%;
+    li {
+      margin: 1.25rem 0;
+      width: 100%;
+    }
+  }
+`
+
+const Social = styled.article`
+  justify-self: flex-start;
   width: 100%;
-  p {
+  h1 {
     font-family: var(--p-font);
     color: var(--secondary);
     font-size: var(--fz-2);
     letter-spacing: 2px;
-    padding: 0 0.5rem;
     margin: 0.5rem 0;
   }
 
   div {
     ${({ theme }) => theme.mixins.flexCenter}
     justify-content: flex-start;
+    margin-left: -0.5rem;
     flex-direction: row;
     flex-wrap: wrap;
-    height: 5rem;
     width: 100%;
     a {
-      ${({ theme }) => theme.mixins.flexCenter}
       ${props => props.theme.styledLink}
       color: var(--accent);
       padding: 0.5rem;
       svg {
         height: 2rem;
         width: 2rem;
+        &:hover {
+          color: var(--secondary);
+        }
       }
     }
   }
 `
 
-const MobileMenu = ({ logo }) => {
+const Copy = styled.div`
+  ${({ theme }) => theme.mixins.flexCenter}
+  font-family: var(--s-font);
+  color: var(--grayscale);
+  align-items: flex-start;
+  flex-direction: column;
+  font-size: var(--fz-1);
+  width: 100%;
+  p {
+    display: block;
+    a {
+      display: inline-block;
+      ${props => props.theme.styledLink}
+      color: var(--accent);
+      padding: 0;
+    }
+  }
+`
+
+const MobileNav = ({ logo }) => {
   const [openMenu, setOpenMenu] = useState(false)
   const toggleMenu = () => setOpenMenu(!openMenu)
 
@@ -143,7 +182,7 @@ const MobileMenu = ({ logo }) => {
   useOnClickOutside(wrapperRef, () => setOpenMenu(false))
   const prefersReducedMotion = usePrefersReducedMotion()
 
-  // Animation for links => may add delay to links with menu slide 
+  // Start Animation Variants
   const linkTransitionSlide = {
     hidden: {
       type: "spring",
@@ -151,7 +190,7 @@ const MobileMenu = ({ logo }) => {
       x: 150,
       transition: {
         duration: 0.4,
-      }
+      },
     },
     show: i => ({
       type: "spring",
@@ -159,20 +198,65 @@ const MobileMenu = ({ logo }) => {
       x: 0,
       transition: {
         duration: 0.4,
-        delay: i * 0.1
-      }
-    })
-  };
+        delay: i * 0.2,
+      },
+    }),
+  }
+  const navTransitionSlide = {
+    hidden: {
+      type: "spring",
+      opacity: 0,
+      x: 150,
+      transition: {
+        duration: 0.4,
+      },
+    },
+    show: i => ({
+      type: "spring",
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.4,
+        delay: i * 0.1,
+      },
+    }),
+  }
+  const menuTransitionSlide = {
+    hidden: {
+      type: "spring",
+      x: 600,
+      transition: {
+        opacity: 0,
+      },
+    },
+    show: {
+      type: "spring",
+      x: 0,
+      transition: {
+        duration: 0.5,
+        opacity: 1,
+      },
+    },
+    exit: {
+      type: "spring",
+      x: 600,
+      transition: {
+        duration: 0.3,
+        opacity: 0,
+      },
+    },
+  }
+  // End Animations
 
   const navItemsAnimated = (
     <>
       {navLinks.map(({ title, url, ariaLabel }, i) => (
         <motion.li
           key={i}
-          custom={i}
-          variants={linkTransitionSlide}
+          variants={navTransitionSlide}
           initial="hidden"
           animate="show"
+          custom={i}
         >
           <StyledLink to={url} aria-label={ariaLabel}>
             {title}
@@ -184,9 +268,7 @@ const MobileMenu = ({ logo }) => {
   const navItems = (
     <>
       {navLinks.map(({ title, url, ariaLabel }, i) => (
-        <li
-          key={i}
-        >
+        <li key={i}>
           <StyledLink to={url} aria-label={ariaLabel}>
             {title}
           </StyledLink>
@@ -203,65 +285,97 @@ const MobileMenu = ({ logo }) => {
 
       {prefersReducedMotion ? (
         <>
-          <Hamburger onClick={toggleMenu} aria-label={`Open Navigation Menu`}>
-            {openMenu ? (
-              <Icons title={`Close`} />
-            ) : (
-              <Icons title={`Hamburger`} />
-            )}
+          <Hamburger
+            onClick={toggleMenu}
+            aria-label={
+              openMenu ? `Close Navigation Menu` : `Open Navigation Menu`
+            }
+          >
+            {openMenu ? <Icons name={`Close`} /> : <Icons name={`Hamburger`} />}
           </Hamburger>
 
           {openMenu === true ? (
             <>
               <MobileMenuWrapper ref={wrapperRef}>
-                <ul>{navItems}</ul>
+                <ul aria-label={`Navigation`}>{navItems}</ul>
+
                 <Social>
-                  <p>Follow Us On</p>
-                  <div>
+                  <h1 aria-label={`Follow Us On Social`}>Follow Us On</h1>
+                  <div aria-label={`Social Links`}>
                     {socialMedia.map(({ title, url }, i) => (
                       <a key={i} to={url} aria-label={title}>
-                        <Icons title={title} />
+                        <Icons name={title} />
                       </a>
                     ))}
                   </div>
                 </Social>
+                <Copy>
+                  <p>
+                    <a href="https://www.flyingembers.com/">Flying Embers ®</a>,{" "}
+                    {new Date().getFullYear()}
+                  </p>
+                  <p>Demo Site | No Rights Reserved.</p>
+                  <p>
+                    Developed By |{" "}
+                    <a href="https://lenharta.netlify.app/">@Lenharta</a>
+                  </p>
+                </Copy>
               </MobileMenuWrapper>
             </>
           ) : null}
         </>
       ) : (
         <>
-          <Hamburger onClick={toggleMenu} aria-label={`Open Navigation Menu`}>
-            {openMenu ? (
-              <Icons title={`Close`} />
-            ) : (
-              <Icons title={`Hamburger`} />
-            )}
+          <Hamburger
+            onClick={toggleMenu}
+            aria-label={
+              openMenu ? `Close Navigation Menu` : `Open Navigation Menu`
+            }
+          >
+            {openMenu ? <Icons name={`Close`} /> : <Icons name={`Hamburger`} />}
           </Hamburger>
 
           {openMenu === true ? (
             <>
-              <MobileMenuWrapper ref={wrapperRef}>
+              <MobileMenuWrapperAnimated
+                variants={menuTransitionSlide}
+                ref={wrapperRef}
+                initial="hidden"
+                animate="show"
+                exit="exit"
+              >
                 <ul>{navItemsAnimated}</ul>
+
                 <Social>
-                  <p>Follow Us On</p>
-                  <div>
+                  <h1 aria-label={`Follow Us On Social`}>Follow Us On</h1>
+                  <div aria-label={`Social Links`}>
                     {socialMedia.map(({ title, url }, i) => (
-                      <motion.a 
+                      <motion.a
                         aria-label={title}
-                        custom={i}
                         variants={linkTransitionSlide}
                         initial="hidden"
                         animate="show"
-                        to={url} 
-                        key={i} 
+                        custom={i}
+                        to={url}
+                        key={i}
                       >
-                        <Icons title={title} />
+                        <Icons name={title} />
                       </motion.a>
                     ))}
                   </div>
                 </Social>
-              </MobileMenuWrapper>
+                <Copy>
+                  <p>
+                    <a href="https://www.flyingembers.com/">Flying Embers ®</a>,{" "}
+                    {new Date().getFullYear()}
+                  </p>
+                  <p>Demo Site | No Rights Reserved.</p>
+                  <p>
+                    Developed By |{" "}
+                    <a href="https://lenharta.netlify.app/">@Lenharta</a>
+                  </p>
+                </Copy>
+              </MobileMenuWrapperAnimated>
             </>
           ) : null}
         </>
@@ -270,4 +384,4 @@ const MobileMenu = ({ logo }) => {
   )
 }
 
-export default MobileMenu
+export default MobileNav
