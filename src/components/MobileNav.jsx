@@ -1,10 +1,11 @@
 import * as React from "react"
 import { useState, useRef } from "react"
 import styled from "styled-components"
-import { AnimatePresence, motion } from "framer-motion"
-import Icons from "../images/icons"
+import { motion } from "framer-motion"
 import { Link } from "gatsby"
 
+import feLogo from "../images/FE-logo-2.webp"
+import Icons from "../images/icons"
 import { navLinks, socialMedia } from "../utils/config"
 import useOnClickOutside from "../hooks/useOnClickOutside"
 import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion"
@@ -52,8 +53,8 @@ const Hamburger = styled.button`
 
 const StyledLink = styled(Link)`
   ${props => props.theme.styledLink}
-  font-family: var(--th-font);
-  font-size: var(--fz-3);
+  font-family: var(--p-font);
+  font-size: clamp(var(--fz-3), 5vw, var(--fz-4));
   color: var(--accent);
   padding: 0.5rem 0rem;
   position: relative;
@@ -80,7 +81,7 @@ const MobileMenuWrapper = styled.aside`
   width: min(75vw, 400px);
   flex-direction: column;
   position: absolute;
-  padding: 3rem 2rem;
+  padding: 6rem 2rem;
   min-height: 100vh;
   bottom: 0;
   right: 0;
@@ -88,7 +89,7 @@ const MobileMenuWrapper = styled.aside`
 
   ul {
     ${props => props.theme.resetList}
-    margin: 3rem 0;
+    margin: 0 0 3rem 0;
     width: 100%;
     li {
       margin: 1.25rem 0;
@@ -105,7 +106,7 @@ const MobileMenuWrapperAnimated = styled(motion.div)`
   width: min(75vw, 400px);
   flex-direction: column;
   position: absolute;
-  padding: 3rem 2rem;
+  padding: 6rem 2rem;
   min-height: 100vh;
   bottom: 0;
   right: 0;
@@ -113,11 +114,23 @@ const MobileMenuWrapperAnimated = styled(motion.div)`
 
   ul {
     ${props => props.theme.resetList}
-    margin: 3rem 0;
     width: 100%;
     li {
       margin: 1.25rem 0;
       width: 100%;
+    }
+  }
+`
+
+const MenuLogoLink = styled(Link)`
+  ${({ theme }) => theme.mixins.flexStart}
+  width: 100%;
+  img {
+    display: block;
+    width: 6rem;
+
+    @media (min-width: 768px) {
+      width: 7.5rem;
     }
   }
 `
@@ -128,7 +141,7 @@ const Social = styled.article`
   h1 {
     font-family: var(--p-font);
     color: var(--secondary);
-    font-size: var(--fz-2);
+    font-size: clamp(var(--fz-2), 4vw, var(--fz-3));
     letter-spacing: 2px;
     margin: 0.5rem 0;
   }
@@ -150,6 +163,12 @@ const Social = styled.article`
         &:hover {
           color: var(--secondary);
         }
+      }
+    }
+    @media (min-width: 600px) {
+      svg {
+        height: 2.75rem;
+        width: 2.75rem;
       }
     }
   }
@@ -297,13 +316,18 @@ const MobileNav = ({ logo }) => {
           {openMenu === true ? (
             <>
               <MobileMenuWrapper ref={wrapperRef}>
+                <MenuLogoLink to="/">
+                  {/* <span>{logo}</span> */}
+                  <img src={feLogo} alt={`Flying Embers Logo`} />
+                </MenuLogoLink>
+
                 <ul aria-label={`Navigation`}>{navItems}</ul>
 
                 <Social>
                   <h1 aria-label={`Follow Us On Social`}>Follow Us On</h1>
                   <div aria-label={`Social Links`}>
                     {socialMedia.map(({ title, url }, i) => (
-                      <a key={i} to={url} aria-label={title}>
+                      <a key={i} href={url} aria-label={title}>
                         <Icons name={title} />
                       </a>
                     ))}
@@ -342,8 +366,12 @@ const MobileNav = ({ logo }) => {
                 ref={wrapperRef}
                 initial="hidden"
                 animate="show"
-                exit="exit"
               >
+                <MenuLogoLink to="/">
+                  {/* <span>{logo}</span> */}
+                  <img src={feLogo} alt={`Flying Embers Logo`} />
+                </MenuLogoLink>
+
                 <ul>{navItemsAnimated}</ul>
 
                 <Social>
@@ -356,7 +384,7 @@ const MobileNav = ({ logo }) => {
                         initial="hidden"
                         animate="show"
                         custom={i}
-                        to={url}
+                        href={url}
                         key={i}
                       >
                         <Icons name={title} />
