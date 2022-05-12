@@ -7,6 +7,7 @@ import MobileNav from "./MobileNav"
 
 const StyledHeader = styled.header`
   border: solid 1px var(--accent-section);
+  background: var(--primary);
   position: fixed;
   height: auto;
   width: 100%;

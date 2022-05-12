@@ -58,11 +58,12 @@ const GlobalStyle = createGlobalStyle`
   ////////// GLOBAL SEMANTIC ELEMENTS
   html {
     width: 100%;
+    height: 100%;
   }
   body {
     ${props => props.theme.body}
     width: 100%;
-    min-height: 100%;
+    height: 100%;
   }
   h1,
   h2,

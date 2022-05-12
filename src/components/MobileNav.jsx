@@ -76,7 +76,7 @@ const StyledLink = styled(Link)`
 const MobileMenuWrapper = styled.aside`
   ${({ theme }) => theme.mixins.blurBackground}
   ${({ theme }) => theme.mixins.flexBetween}
-  border: solid 1px var(--accent-section);
+  border: solid 2px var(--accent-section);
   background: var(--primary);
   width: min(75vw, 400px);
   flex-direction: column;
@@ -84,7 +84,7 @@ const MobileMenuWrapper = styled.aside`
   padding: 6rem 2rem;
   min-height: 100vh;
   bottom: 0;
-  right: 0;
+  right: -4px;
   top: 0;
 
   ul {
@@ -109,7 +109,7 @@ const MobileMenuWrapperAnimated = styled(motion.div)`
   padding: 6rem 2rem;
   min-height: 100vh;
   bottom: 0;
-  right: 0;
+  right: -4px;
   top: 0;
 
   ul {
@@ -316,11 +316,6 @@ const MobileNav = ({ logo }) => {
           {openMenu === true ? (
             <>
               <MobileMenuWrapper ref={wrapperRef}>
-                <MenuLogoLink to="/">
-                  {/* <span>{logo}</span> */}
-                  <img src={feLogo} alt={`Flying Embers Logo`} />
-                </MenuLogoLink>
-
                 <ul aria-label={`Navigation`}>{navItems}</ul>
 
                 <Social>
@@ -333,6 +328,9 @@ const MobileNav = ({ logo }) => {
                     ))}
                   </div>
                 </Social>
+                <MenuLogoLink to="/">
+                  <img src={feLogo} alt={`Flying Embers Logo`} />
+                </MenuLogoLink>
                 <Copy>
                   <p>
                     <a href="https://www.flyingembers.com/">Flying Embers ®</a>,{" "}
@@ -367,11 +365,6 @@ const MobileNav = ({ logo }) => {
                 initial="hidden"
                 animate="show"
               >
-                <MenuLogoLink to="/">
-                  {/* <span>{logo}</span> */}
-                  <img src={feLogo} alt={`Flying Embers Logo`} />
-                </MenuLogoLink>
-
                 <ul>{navItemsAnimated}</ul>
 
                 <Social>
@@ -392,6 +385,9 @@ const MobileNav = ({ logo }) => {
                     ))}
                   </div>
                 </Social>
+                <MenuLogoLink to="/">
+                  <img src={feLogo} alt={`Flying Embers Logo`} />
+                </MenuLogoLink>
                 <Copy>
                   <p>
                     <a href="https://www.flyingembers.com/">Flying Embers ®</a>,{" "}
