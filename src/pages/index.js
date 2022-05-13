@@ -50,7 +50,7 @@ const HeroContent = styled.div`
   display: block;
   width: 100%;
   min-height: 50%;
-  z-index: -1;
+  z-index: 0;
   bottom: 0;
   left: 0;
   margin: 2rem;
@@ -75,16 +75,31 @@ const HeroContent = styled.div`
 `
 
 const HeroButtons = styled.div`
-  position: absolute;
+  ${({theme}) => theme.mixins.flexCenter}
+  flex-direction: column;
+  align-items: flex-start;
+  /* position: absolute; */
+  /* margin: 0; */
   width: 100%;
-  z-index: 1;
+  /* z-index: 2; */
+  margin-top: 1rem;
   button {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     padding: 1rem;
     width: 100%;
     &:hover {
       cursor: pointer;
-      background: none;
+      /* background: none; */
+    }
+  }
+  
+  @media (min-width: 1080px) {
+    justify-content: flex-start;
+    flex-direction: row;
+    width: 100%;
+    button {
+    margin-right: 2rem;
+
     }
   }
 `

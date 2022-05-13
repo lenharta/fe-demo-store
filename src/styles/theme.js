@@ -78,7 +78,7 @@ export const Theme = {
     background: ${props =>
       props.accented === true ? `var(--primary)` : `var(--accent)`};
     border: ${props =>
-      props.accented === true ? `var(-border-button-accent)` : `var(--border-button)`};
+      props.accented === true ? `var(--border-button-accent)` : `var(--border-button)`};
     :hover {
       opacity: var(--hover-opacity);
       color: var(--secondary);
