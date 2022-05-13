@@ -137,4 +137,26 @@ module.exports = {
       ariaLabel: "",
     },
   ],
+  nutritionFacts: [
+    {
+      title: "NO",
+      category: "GLUTEN",
+    },
+    {
+      title: "0",
+      category: "SUGAR",
+    },
+    {
+      title: "100%",
+      category: "VEGAN",
+    },
+    {
+      title: "0",
+      category: "CARBS",
+    },
+    {
+      title: "USDA",
+      category: "ORGANIC",
+    },
+  ],
 }

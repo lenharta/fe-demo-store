@@ -14,12 +14,12 @@ export const Theme = {
     margin-top: var(--mobile-nav-height);
     width: min(100%, 1600px);
     flex-direction: column;
-    /* min-height: 100vh; */
-    /* padding: 1rem; */
+    min-height: 100vh;
+    padding: 1rem;
 
     @media (min-width: 1080px) {
       // WILL BE PADDING FOR DESKTOP NAV
-      /* padding: 2rem; */
+      padding: 2rem;
     }
   `,
 
@@ -78,7 +78,7 @@ export const Theme = {
     background: ${props =>
       props.accented === true ? `var(--primary)` : `var(--accent)`};
     border: ${props =>
-      props.accented === true ? `none` : `var(--border-button)`};
+      props.accented === true ? `var(-border-button-accent)` : `var(--border-button)`};
     :hover {
       opacity: var(--hover-opacity);
       color: var(--secondary);

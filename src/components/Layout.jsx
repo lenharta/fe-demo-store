@@ -10,11 +10,6 @@ import { Theme } from "../styles/theme"
 import GlobalStyle from "../styles/GlobalStyle"
 import { ThemeProvider } from "styled-components"
 
-const Site = styled.div`
-  ${({ theme }) => theme.mixins.flexCenter}
-  flex-direction: column;
-`
-
 const Content = styled.div`
   ${({ theme }) => theme.mixins.flexCenter}
   flex-direction: column;
@@ -22,6 +17,8 @@ const Content = styled.div`
 
   main {
     ${({ theme }) => theme.mixins.flexCenter}
+    margin: 0 auto;
+    height: 100%;
     width: 100%;
   }
 

@@ -16,7 +16,7 @@ const Container = styled.div`
   flex-direction: row;
   padding: 1rem;
   width: 100%;
-
+  /* z-index: 9; */
   @media (min-width: 1080px) {
     display: none;
   }
@@ -36,7 +36,7 @@ const Hamburger = styled.button`
   ${props => props.theme.resetButton}
   color: var(--accent);
   padding: 0.5rem;
-  z-index: 10;
+  z-index: 50;
   svg {
     height: 2.5rem;
     width: 2.5rem;
@@ -57,19 +57,9 @@ const StyledLink = styled(Link)`
   font-size: clamp(var(--fz-3), 5vw, var(--fz-4));
   color: var(--accent);
   padding: 0.5rem 0rem;
-  position: relative;
 
   &:hover {
     color: var(--secondary);
-    &::after {
-      content: " ";
-      background: var(--secondary);
-      position: absolute;
-      height: 2px;
-      bottom: 0;
-      right: 0;
-      left: 0;
-    }
   }
 `
 
@@ -78,7 +68,7 @@ const MobileMenuWrapper = styled.aside`
   ${({ theme }) => theme.mixins.flexBetween}
   border: solid 2px var(--accent-section);
   background: var(--primary);
-  width: min(75vw, 400px);
+  width: min(70vw, 400px);
   flex-direction: column;
   position: absolute;
   padding: 6rem 2rem;
@@ -103,15 +93,15 @@ const MobileMenuWrapperAnimated = styled(motion.div)`
   ${({ theme }) => theme.mixins.flexBetween}
   border: solid 1px var(--accent-section);
   background: var(--primary);
-  width: min(75vw, 400px);
+  width: min(70vw, 400px);
   flex-direction: column;
-  position: absolute;
   padding: 6rem 2rem;
+  position: absolute;
   min-height: 100vh;
   bottom: 0;
   right: -4px;
   top: 0;
-
+  
   ul {
     ${props => props.theme.resetList}
     width: 100%;

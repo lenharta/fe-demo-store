@@ -15,7 +15,7 @@ const variables = css`
     --accent-section: rgba(51, 51, 51, 1);
     --secondary: rgba(255, 255, 255, 1);
     --accent: rgba(185, 140, 71, 1);
-    --grayscale: rgba(200, 200, 200, 0.7);
+    --grayscale: rgba(200, 200, 200, 0.5);
 
     ////////// FONT SIZE
     --fz-1: 0.75em;
@@ -47,6 +47,7 @@ const variables = css`
     --border-outline-lg: solid 5px var(--outline-border);
     --layout-border: solid 2.5px var(--outline-border);
     --border-button: solid 3px var(--accent);
+    --border-button-accent: solid 3px var(--primary);
     
     ////////// NAVIGATION
     --mobile-nav-height: 5rem;

@@ -65,13 +65,6 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
   }
-  h1,
-  h2,
-  h3,
-  h4 {
-  }
-  a {
-  }
 `
 
 export default GlobalStyle
