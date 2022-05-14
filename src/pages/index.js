@@ -7,7 +7,7 @@ import styled from "styled-components"
 import Seo from "../components/Seo"
 import Layout from "../components/Layout"
 import PrimaryButton from "../components/PrimaryButton"
-import SecondaryButton from "../components/SecondaryButton"
+import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion"
 
 const HomePageWrapper = styled.section`
   ${({ theme }) => theme.mixins.flexCenter}
@@ -45,17 +45,17 @@ const Hero = styled.article`
   }
 `
 
+// fix media issues with buttons
 const HeroContent = styled.div`
   position: absolute;
-  display: block;
-  width: 100%;
-  min-height: 50%;
+  /* min-height: 50%; */
+  min-width: 100%;
   z-index: 0;
   bottom: 0;
   left: 0;
-  margin: 2rem;
+  padding: 2rem;
   h1 {
-    font-size: clamp(var(--fz-4), 5vw, var(--fz-15));
+    font-size: clamp(var(--fz-4), 6vw, var(--fz-15));
     font-family: var(--p-font);
     color: var(--secondary);
     span {
@@ -75,38 +75,80 @@ const HeroContent = styled.div`
 `
 
 const HeroButtons = styled.div`
-  ${({theme}) => theme.mixins.flexCenter}
-  flex-direction: column;
+  ${({ theme }) => theme.mixins.flexCenter}
   align-items: flex-start;
-  /* position: absolute; */
-  /* margin: 0; */
-  width: 100%;
-  /* z-index: 2; */
+  flex-direction: column;
   margin-top: 1rem;
+  width: 100%;
   button {
     margin: 0.5rem 0;
     padding: 1rem;
     width: 100%;
     &:hover {
       cursor: pointer;
-      /* background: none; */
     }
   }
-  
+
   @media (min-width: 1080px) {
     justify-content: flex-start;
     flex-direction: row;
     width: 100%;
     button {
-    margin-right: 2rem;
-
+      margin-right: 2rem;
     }
   }
 `
 
+const AnimatedHeroButtons = styled(motion.div)`
+  ${({ theme }) => theme.mixins.flexCenter}
+  align-items: flex-start;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 100%;
+  button {
+    margin: 0.5rem 0;
+    padding: 1rem;
+    width: 100%;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  @media (min-width: 1080px) {
+    justify-content: flex-start;
+    flex-direction: row;
+    width: 100%;
+    button {
+      margin-right: 2rem;
+    }
+  }
+`
+
+const animatedButton = {
+  hidden: {
+    type: "spring",
+    y: 100,
+    opacity: 0,
+    transition: {
+      duration: 0.6,
+      staggerChildren: 0.2,
+    },
+  },
+  show: {
+    type: "spring",
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      staggerChildren: 0.2,
+    },
+  },
+}
+
 const IndexPage = () => {
   const [playVideo, setPlayVideo] = useState(true)
   const vidRef = useRef(null)
+  const prefersReducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
     if (playVideo === false) {
@@ -135,17 +177,39 @@ const IndexPage = () => {
             <br />
             <span>FLYING EMBERS</span>
           </h1>
-          <HeroButtons>
-            <PrimaryButton
-              text={`Buy Online`}
-              onClick={() => navigate("shop")}
-            />
-            <PrimaryButton
-              text={`Buy In Store`}
-              onClick={() => navigate("locations")}
-              accented={true}
-            />
-          </HeroButtons>
+          {prefersReducedMotion ? (
+            <>
+              <HeroButtons>
+                <PrimaryButton
+                  text={`Buy Online`}
+                  onClick={() => navigate("shop")}
+                />
+                <PrimaryButton
+                  text={`Buy In Store`}
+                  onClick={() => navigate("locations")}
+                  accented={true}
+                />
+              </HeroButtons>
+            </>
+          ) : (
+            <>
+              <AnimatedHeroButtons
+                variants={animatedButton}
+                initial={`hidden`}
+                animate={`show`}
+              >
+                <PrimaryButton
+                  text={`Buy Online`}
+                  onClick={() => navigate("shop")}
+                />
+                <PrimaryButton
+                  text={`Buy In Store`}
+                  onClick={() => navigate("locations")}
+                  accented={true}
+                />
+              </AnimatedHeroButtons>
+            </>
+          )}
         </HeroContent>
       </Hero>
       <HomePageWrapper></HomePageWrapper>
