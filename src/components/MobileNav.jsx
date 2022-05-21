@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useState, useRef } from "react"
 import styled from "styled-components"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { Link } from "gatsby"
 
 import feLogo from "../images/FE-logo-2.webp"
@@ -101,7 +101,7 @@ const MobileMenuWrapperAnimated = styled(motion.div)`
   bottom: 0;
   right: -4px;
   top: 0;
-  
+
   ul {
     ${props => props.theme.resetList}
     width: 100%;
@@ -232,25 +232,24 @@ const MobileNav = ({ logo }) => {
   }
   const menuTransitionSlide = {
     hidden: {
-      type: "spring",
       x: 600,
       transition: {
         opacity: 0,
       },
     },
     show: {
-      type: "spring",
       x: 0,
       transition: {
+        type: "tween",
         duration: 0.5,
         opacity: 1,
       },
     },
-    exit: {
-      type: "spring",
-      x: 600,
+    remove: {
+      y: `100vh`,
       transition: {
-        duration: 0.3,
+        type: "spring",
+        duration: 0.5,
         opacity: 0,
       },
     },
@@ -303,7 +302,7 @@ const MobileNav = ({ logo }) => {
             {openMenu ? <Icons name={`Close`} /> : <Icons name={`Hamburger`} />}
           </Hamburger>
 
-          {openMenu === true ? (
+          {openMenu ? (
             <>
               <MobileMenuWrapper ref={wrapperRef}>
                 <ul aria-label={`Navigation`}>{navItems}</ul>
@@ -347,13 +346,15 @@ const MobileNav = ({ logo }) => {
             {openMenu ? <Icons name={`Close`} /> : <Icons name={`Hamburger`} />}
           </Hamburger>
 
-          {openMenu === true ? (
-            <>
+          <AnimatePresence>
+            {openMenu && (
               <MobileMenuWrapperAnimated
                 variants={menuTransitionSlide}
                 ref={wrapperRef}
+                key="mobileMenu"
                 initial="hidden"
                 animate="show"
+                exit="remove"
               >
                 <ul>{navItemsAnimated}</ul>
 
@@ -390,8 +391,8 @@ const MobileNav = ({ logo }) => {
                   </p>
                 </Copy>
               </MobileMenuWrapperAnimated>
-            </>
-          ) : null}
+            )}
+          </AnimatePresence>
         </>
       )}
     </Container>

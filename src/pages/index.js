@@ -1,36 +1,29 @@
 import * as React from "react"
 import { useState, useRef, useEffect } from "react"
-import { navigate } from "gatsby"
 import { motion } from "framer-motion"
 import styled from "styled-components"
+import { navigate } from "gatsby"
 
-import Seo from "../components/Seo"
-import Layout from "../components/Layout"
-import PrimaryButton from "../components/PrimaryButton"
+import { Seo, Layout, PrimaryButton, SkipToContent } from "../components"
 import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion"
 
-const HomePageWrapper = styled.section`
-  ${({ theme }) => theme.mixins.flexCenter}
-  width: min(100%, 1600px);
-  flex-direction: column;
-  height: 100%;
-`
+//
+// =====
+//
 
-const Hero = styled.article`
-  /* flex-direction: column; */
+const Hero = styled.section`
   ${({ theme }) => theme.mixins.flexCenter}
   margin-top: var(--mobile-nav-height);
   position: relative;
-  /* z-index: -1; */
-  min-width: 100%;
-  min-height: 60vh;
   overflow: hidden;
+  min-height: 60vh;
+
+  width: 100%;
+  left: 0;
+  top: 0;
 
   video {
     object-fit: cover;
-    /* object-position: center; */
-    /* object-position: center; */
-
     position: absolute;
     min-height: 100%;
     min-width: 100%;
@@ -38,26 +31,23 @@ const Hero = styled.article`
   }
 
   @media (min-width: 1080px) {
-    margin-top: var(--desktop-nav-height);
     min-height: calc(90vh - var(--desktop-nav-height));
-    video {
-    }
+    margin-top: var(--desktop-nav-height);
   }
 `
-
-// fix media issues with buttons
 const HeroContent = styled.div`
+  display: block;
+  width: 100%;
   position: absolute;
-  /* min-height: 50%; */
-  min-width: 100%;
+  padding: 1.5rem;
   z-index: 0;
   bottom: 0;
-  left: 0;
-  padding: 2rem;
+
   h1 {
-    font-size: clamp(var(--fz-4), 6vw, var(--fz-15));
+    font-size: clamp(2.25em, 6vw, 6em);
     font-family: var(--p-font);
     color: var(--secondary);
+    margin-bottom: 1.5rem;
     span {
       color: var(--accent);
       letter-spacing: 2px;
@@ -65,50 +55,50 @@ const HeroContent = styled.div`
   }
 
   @media (min-width: 1080px) {
-    margin: 6rem;
-    h1 {
-      span {
-        letter-spacing: 5px;
-      }
+    /* width: 100%; */
+    padding: 3rem 6rem;
+
+    span {
+      letter-spacing: 5px;
     }
   }
-`
 
+  @media (min-width: 1600px) {
+    /* padding: 6rem 0; */
+    margin: 0 auto;
+    max-width: 1600px;
+  }
+`
 const HeroButtons = styled.div`
   ${({ theme }) => theme.mixins.flexCenter}
   align-items: flex-start;
   flex-direction: column;
-  margin-top: 1rem;
-  width: 100%;
   button {
-    margin: 0.5rem 0;
-    padding: 1rem;
     width: 100%;
-    &:hover {
-      cursor: pointer;
+    font-size: clamp(1.25em, 2vw, 1.75em);
+    &:last-child {
+      margin-top: 1.5rem;
     }
   }
 
   @media (min-width: 1080px) {
     justify-content: flex-start;
     flex-direction: row;
-    width: 100%;
     button {
-      margin-right: 2rem;
     }
   }
 `
-
 const AnimatedHeroButtons = styled(motion.div)`
   ${({ theme }) => theme.mixins.flexCenter}
   align-items: flex-start;
   flex-direction: column;
-  margin-top: 1rem;
-  width: 100%;
+  width: min(100%, 1600px);
   button {
-    margin: 0.5rem 0;
-    padding: 1rem;
-    width: 100%;
+    font-size: clamp(1em, 2vw, 1.5em);
+    padding: 0.75rem 1rem;
+    &:last-child {
+      margin-top: 1.5rem;
+    }
     &:hover {
       cursor: pointer;
     }
@@ -117,13 +107,47 @@ const AnimatedHeroButtons = styled(motion.div)`
   @media (min-width: 1080px) {
     justify-content: flex-start;
     flex-direction: row;
-    width: 100%;
     button {
-      margin-right: 2rem;
+      padding: 0.75rem 2rem;
+      &:first-child {
+        margin-right: 2rem;
+      }
+      &:last-child {
+        margin-top: 0;
+      }
     }
   }
 `
+const HomePageWrapper = styled.section`
+  ${({ theme }) => theme.mixins.flexCenter}
+  width: min(100%, 1600px);
+  flex-direction: column;
 
+  section {
+    padding: 0 1.5rem;
+    margin: 1.5rem auto;
+    min-height: 100vh;
+    width: 100%;
+
+    @media (min-width: 1080px) {
+      padding: 6rem;
+    }
+  }
+`
+const SkipButtonWrapper = styled.div`
+  display: none;
+
+  @media (min-width: 1080px) {
+    ${({ theme }) => theme.mixins.flexCenter}
+    width: 100%;
+    height: 10vh;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`
+// animation config
 const animatedButton = {
   hidden: {
     type: "spring",
@@ -145,8 +169,12 @@ const animatedButton = {
   },
 }
 
+//
+// =====
+//
+
 const IndexPage = () => {
-  const [playVideo, setPlayVideo] = useState(true)
+  const [playVideo, setPlayVideo] = useState()
   const vidRef = useRef(null)
   const prefersReducedMotion = usePrefersReducedMotion()
 
@@ -157,6 +185,10 @@ const IndexPage = () => {
       vidRef.current.play()
     }
   }, [playVideo])
+
+  //
+  // =====
+  //
 
   return (
     <Layout>
@@ -212,41 +244,15 @@ const IndexPage = () => {
           )}
         </HeroContent>
       </Hero>
-      <HomePageWrapper></HomePageWrapper>
+      <HomePageWrapper>
+        <SkipButtonWrapper>
+          <SkipToContent />
+        </SkipButtonWrapper>
 
-      {/* <HomePageWrapper>
-        <VideoContainer onClick={togglePlayPause}>
-          <video
-            onClick={handlePlayVideo}
-            autoPlay
-            ref={vidRef}
-            playsInline
-            loop
-          >
-            <source
-              src="//cdn.shopify.com/s/files/1/0352/6367/6475/t/51/assets/video.mp4?v=176295901941828733541639625563"
-              type="video/mp4"
-            />
-            Your browser does not support HTML video.
-          </video>
-          <Overlay>
-            <h1>
-              Hard To Brew,
-              <br />
-              Easy To Love.
-            </h1>
-          </Overlay>
-        </VideoContainer>
-        <h1>Index Page</h1>
-        <PrimaryButton
-          text={`Buy Online`}
-          onClick={() => navigate("shop")}
-        />
-        <SecondaryButton
-          text={`Buy In Store`}
-          onClick={() => navigate("locations")}
-        />
-      </HomePageWrapper> */}
+        <section id="content"></section>
+        <section></section>
+        <section></section>
+      </HomePageWrapper>
     </Layout>
   )
 }

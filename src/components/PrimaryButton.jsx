@@ -1,13 +1,13 @@
 import * as React from "react"
 import styled from "styled-components"
-import { FaAngleRight } from "react-icons/fa"
+import Icons from "../images/icons"
 
 const ButtonWrapper = styled.button`
   ${props => props.theme.primaryButtonComponent}
   ${({ theme }) => theme.mixins.flexBetween}
   padding: 0.5rem 1rem;
   border-radius: 50px;
-  max-width: 400px;
+  max-width: 500px;
   width: 100%;
 `
 const Title = styled.span`
@@ -24,7 +24,7 @@ const PrimaryButton = ({
   return (
     <ButtonWrapper onClick={onClick} disabled={disabled} accented={accented}>
       <Title>{text}</Title>
-      <FaAngleRight />
+      <Icons name="Right" />
     </ButtonWrapper>
   )
 }

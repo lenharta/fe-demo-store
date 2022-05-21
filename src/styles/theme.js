@@ -73,6 +73,8 @@ export const Theme = {
     }
   `,
   primaryButtonComponent: css`
+    font-family: var(--th-font);
+    font-weight: 700;
     color: ${props =>
       props.accented === true ? `var(--accent)` : `var(--primary)`};
     background: ${props =>
@@ -82,6 +84,7 @@ export const Theme = {
     :hover {
       opacity: var(--hover-opacity);
       color: var(--secondary);
+      cursor: pointer;
     }
   `,
   secondaryButtonComponent: css`
@@ -91,6 +94,7 @@ export const Theme = {
     :hover {
       opacity: var(--hover-opacity);
       color: var(--secondary);
+      cursor: pointer;
     }
   `,
 

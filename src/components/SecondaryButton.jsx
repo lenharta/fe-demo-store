@@ -1,6 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
 import { FaAngleRight } from "react-icons/fa"
+import Icons from "../images/icons"
 
 // SAME AS PRIMARY BUTTON, DIFFERENT COLORS FOR DIFFERENT THEMES
 const ButtonWrapper = styled.button`
@@ -20,7 +21,7 @@ const SecondaryButton = ({ text, onClick, disabled = false }) => {
   return (
     <ButtonWrapper onClick={onClick} disabled={disabled}>
       <Title>{text}</Title>
-      <FaAngleRight /> 
+      <Icons name="Right" />
     </ButtonWrapper>
   )
 }

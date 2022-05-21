@@ -5,10 +5,9 @@ import { navLinks } from "../utils/config"
 import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion"
 import MobileNav from "./MobileNav"
 import { motion } from "framer-motion"
- 
+
 const StyledHeader = styled.header`
   ${({ theme }) => theme.mixins.flexCenter}
-  border: solid 1px var(--accent-section);
   height: var(--mobile-nav-height);
   background: var(--primary);
   position: fixed;
@@ -19,28 +18,33 @@ const StyledHeader = styled.header`
   top: 0;
   nav {
     ${({ theme }) => theme.mixins.flexBetween}
-    flex-direction: row;
-    width: 100%;
+    width: min(100%, 1600px);
   }
-
+  
   @media (min-width: 1080px) {
     height: var(--desktop-nav-height);
-    padding: 0 6rem;
+    nav {
+      padding: 0 6rem;
+      margin: 0 auto;
+
+    }
   }
-`
+  `
 
 const NavList = styled.ul`
   display: none;
-
+  
   @media (min-width: 1080px) {
-    ${({ theme }) => theme.mixins.flexCenter}
+    ${({ theme }) => theme.mixins.flexBetween}
     ${props => props.theme.resetList}
     justify-content: flex-end;
-    height: 100%;
+    margin-right: -1rem;
+    /* margin-left: 2rem; */
+    min-width: 70%;
     li {
-      font-size: clamp(var(--fz-2), 5vw, var(--fz-3));
+      display: block;
       letter-spacing: 1px;
-      margin: 0 0.5rem;
+      margin: 0.5rem;
     }
   }
 `
@@ -49,13 +53,14 @@ const StyledLink = styled(Link)`
   display: none;
 
   @media (min-width: 1080px) {
+    font-size: clamp(0.5em, 2vw, 1.25em);
     ${({ theme }) => theme.mixins.flexCenter}
     ${props => props.theme.styledLink}
-    justify-content: flex-start;
     font-family: var(--th-font);
+    font-weight: 700;
     color: var(--accent);
-    padding: 0.75rem;
-    width: 100%;
+    padding: 0.5rem;
+    min-width: 100%;
     &:hover {
       color: var(--secondary);
     }
@@ -71,12 +76,19 @@ const Logo = styled(Link)`
     justify-content: flex-start;
     font-family: var(--s-font);
     color: var(--accent);
-    padding: 1rem;
+    /* height: 100%; */
+    min-width: 30%;
+    flex-wrap: nowrap;
+
     span {
-      font-size: clamp(var(--fz-3), 5vw, var(--fz-4));
+      font-size: clamp(var(--fz-3), 3vw, var(--fz-4));
       font-family: var(--p-font);
+      font-weight: 700;
       letter-spacing: 2px;
       width: 100%;
+      padding: 0.5rem;
+      margin-left: -0.5rem;
+   
       &:hover {
         color: var(--secondary);
       }
@@ -113,7 +125,7 @@ const Header = ({ siteTitle }) => {
       y: 100,
       transition: {
         duration: 0.5,
-      }
+      },
     },
     show: {
       type: "spring",
@@ -121,7 +133,7 @@ const Header = ({ siteTitle }) => {
       y: 0,
       transition: {
         duration: 0.5,
-      }
+      },
     },
   }
 
@@ -140,11 +152,11 @@ const Header = ({ siteTitle }) => {
     <>
       {navLinks.map(({ title, url, ariaLabel }, i) => (
         <motion.li
-        key={i}
-        variants={navTransitionUp}
-        initial="hidden"
-        animate="show"
-        custom={i}
+          key={i}
+          variants={navTransitionUp}
+          initial="hidden"
+          animate="show"
+          custom={i}
         >
           <StyledLink to={url} aria-label={ariaLabel}>
             {title}
@@ -162,11 +174,7 @@ const Header = ({ siteTitle }) => {
 
   const animatedNavLogo = (
     <>
-      <motion.span
-        variants={logoTransitionUp}
-        initial="hidden"
-        animate="show"
-      >
+      <motion.span variants={logoTransitionUp} initial="hidden" animate="show">
         {siteTitle}
       </motion.span>
     </>

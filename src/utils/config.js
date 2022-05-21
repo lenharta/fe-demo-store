@@ -51,7 +51,7 @@ module.exports = {
       ariaLabel: "Locations",
     },
     {
-      title: "About Us",
+      title: "Our Story",
       url: "/about",
       ariaLabel: "About Us",
     },

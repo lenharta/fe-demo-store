@@ -7,6 +7,10 @@ import {
   FaPinterest,
   FaLinkedinIn,
   FaExternalLinkAlt,
+  FaAngleRight,
+  FaAngleLeft,
+  FaAngleUp,
+  FaAngleDown
 } from "react-icons/fa"
 
 const Icons = ({ name }) => {
@@ -23,6 +27,14 @@ const Icons = ({ name }) => {
       return <FaLinkedinIn />
     case "Pinterest":
       return <FaPinterest />
+    case "Up":
+      return <FaAngleUp />
+    case "Down":
+      return <FaAngleDown />
+    case "Right":
+      return <FaAngleRight />
+    case "Left":
+      return <FaAngleLeft />
     default:
       return <FaExternalLinkAlt />
   }

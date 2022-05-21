@@ -11,14 +11,13 @@ import GlobalStyle from "../styles/GlobalStyle"
 import { ThemeProvider } from "styled-components"
 
 const Content = styled.div`
-  ${({ theme }) => theme.mixins.flexCenter}
-  flex-direction: column;
   width: 100%;
+  height: 100%;
 
   main {
     ${({ theme }) => theme.mixins.flexCenter}
+    flex-direction: column; 
     margin: 0 auto;
-    height: 100%;
     width: 100%;
   }
 
@@ -40,6 +39,7 @@ const Layout = ({ children, location }) => {
     }
   `)
 
+
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
@@ -59,7 +59,7 @@ Layout.propTypes = {
 };
 
 
-{
+
   /* <div>
   @ <Link href="https://www.flyingembers.com/">Flying Embers</Link>,{" "}
   {new Date().getFullYear()}
@@ -74,14 +74,14 @@ Layout.propTypes = {
     Source Code
   </Link>
 </div> */
-}
 
-{
+
+
   /* <ToTopButton
   onClick={() => window.scrollTo(0, 0)}
   disabled={window.location.scrollX === 0}
 /> */
-}
+
 // POSSIBLE ERROR WITH { propTypes } MISSING, TRY FIRST
 
 export default Layout
